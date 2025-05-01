@@ -22,16 +22,19 @@ tl.from(titleSplit.chars, {
 })
     .from(subTitleSplit.chars, {
         opacity: 0,
-        y: 20,
+        y: 10,
         ease: "power4.out",
         duration: 0.5,
         stagger: 0.03,
-    }, "-=0.3")
-    .to(window, {
+    }, "-=0.3");
+
+if (window.scrollY < 50) {
+    tl.to(window, {
         scrollTo: { y: window.innerHeight * 0.9 },
-        duration: 3,
+        duration: 2,
         ease: "power2.inOut"
     }, "+=0.5");
+}
 
 // ANIMATIONS - MAIN CONTENT
 document.addEventListener('DOMContentLoaded', () => {
