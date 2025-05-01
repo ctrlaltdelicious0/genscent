@@ -10,23 +10,28 @@ const subTitleElement = document.querySelector(".sub_title");
 const titleSplit = new SplitText(titleElement, { type: "chars" });
 const subTitleSplit = new SplitText(subTitleElement, { type: "chars" });
 
-gsap.from(titleSplit.chars, {
+const tl = gsap.timeline();
+
+tl.from(titleSplit.chars, {
     opacity: 0,
     y: 10,
     ease: "power4.out",
     delay: 1,
     duration: 1,
     stagger: 0.08,
-});
-
-gsap.from(subTitleSplit.chars, {
-    opacity: 0,
-    y: 20,
-    ease: "power4.out",
-    delay: 1.3,
-    duration: 0.5,
-    stagger: 0.03,
-});
+})
+    .from(subTitleSplit.chars, {
+        opacity: 0,
+        y: 20,
+        ease: "power4.out",
+        duration: 0.5,
+        stagger: 0.03,
+    }, "-=0.3")
+    .to(window, {
+        scrollTo: { y: window.innerHeight * 0.9 },
+        duration: 3,
+        ease: "power2.inOut"
+    }, "+=0.5");
 
 // ANIMATIONS - MAIN CONTENT
 document.addEventListener('DOMContentLoaded', () => {
@@ -51,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             delay: 0.5,
             duration: 1,
-            stagger: 0.3,
+            stagger: 0.5,
         });
 });
 
